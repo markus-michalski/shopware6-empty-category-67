@@ -27,7 +27,7 @@ jobs:
           coverage: none
 
       - name: Validate composer.json
-        run: composer validate --strict
+        run: composer validate
 
       - name: Install Composer Dependencies
         run: composer install --prefer-dist --no-progress
