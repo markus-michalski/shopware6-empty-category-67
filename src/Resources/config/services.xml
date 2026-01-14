@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true" public="false"/>
+
+        <!-- Services -->
+        <service id="Mmd\EmptyCategory\Service\EmptyCategoryMessageService"/>
+
+        <!-- Twig Extension -->
+        <service id="Mmd\EmptyCategory\Twig\EmptyCategoryExtension">
+            <tag name="twig.extension"/>
+        </service>
+
+        <!-- Subscriber -->
+        <service id="Mmd\EmptyCategory\Subscriber\CategoryPageSubscriber">
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="media.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

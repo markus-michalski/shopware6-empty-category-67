@@ -1,0 +1,60 @@
+{
+    "name": "mmd/sw67-empty-category",
+    "description": "Custom 'No Products' messages per category for Shopware 6.7",
+    "version": "1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Markus Michalski",
+            "email": "info@markus-michalski.net",
+            "homepage": "https://markus-michalski.de"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "shopware/core": "~6.7.0",
+        "shopware/storefront": "~6.7.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mmd\\EmptyCategory\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mmd\\EmptyCategory\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Mmd\\EmptyCategory\\MmdEmptyCategory",
+        "label": {
+            "de-DE": "Leere Kategorie Nachrichten",
+            "en-GB": "Empty Category Messages"
+        },
+        "description": {
+            "de-DE": "Individuelle 'Keine Produkte'-Texte und Bilder pro Kategorie mit optionaler Vererbung.",
+            "en-GB": "Custom 'No Products' messages and images per category with optional inheritance."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://markus-michalski.de",
+            "en-GB": "https://markus-michalski.de"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
+    }
+}

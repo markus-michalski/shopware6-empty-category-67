@@ -1,0 +1,50 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+
+{% block element_product_listing_col_empty %}
+    {# Get custom empty message for current category #}
+    {% set activeCategory = page.header.navigation.active ?? null %}
+    {% set emptyMessage = mmd_empty_category_message(activeCategory) %}
+
+    <div class="cms-listing-col col-12">
+        {% block element_product_listing_col_empty_custom %}
+            {% if emptyMessage.hasContent() %}
+                {# CSS class is sanitized in PHP service, safe to use directly #}
+                <div class="mmd-empty-category-message {{ emptyMessage.cssClass }}">
+                    {% block element_product_listing_col_empty_custom_image %}
+                        {% if emptyMessage.hasImage() %}
+                            <div class="mmd-empty-category-image-wrapper">
+                                <img src="{{ emptyMessage.imageUrl|e('html_attr') }}"
+                                     alt="{{ 'mmd.emptyCategory.imageAlt'|trans({ '%category%': activeCategory.name ?? '' })|e('html_attr') }}"
+                                     class="mmd-empty-category-image"
+                                     loading="lazy">
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block element_product_listing_col_empty_custom_message %}
+                        {% if emptyMessage.hasMessage() %}
+                            <div class="mmd-empty-category-text">
+                                {# Use sw_sanitize to allow safe HTML while preventing XSS #}
+                                {{ emptyMessage.message|sw_sanitize }}
+                            </div>
+                        {% else %}
+                            {# Has image but no message: show default alert below image #}
+                            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                type: 'info',
+                                content: 'listing.emptyResultMessage'|trans|sw_sanitize
+                            } %}
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            {% else %}
+                {# Fallback to default Shopware alert #}
+                {% block element_product_listing_col_empty_alert %}
+                    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                        type: 'info',
+                        content: 'listing.emptyResultMessage'|trans|sw_sanitize
+                    } %}
+                {% endblock %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}
