@@ -4,7 +4,7 @@ Custom "No Products" messages and images per category for Shopware 6.7 with opti
 
 [![PHP](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://www.php.net/)
 [![Shopware](https://img.shields.io/badge/Shopware-6.7-blue.svg)](https://www.shopware.com/)
-[![PHPStan](https://img.shields.io/badge/PHPStan-Level%208-brightgreen.svg)](https://phpstan.org/)
+[![PHPStan](https://img.shields.io/badge/PHPStan-Level%206-brightgreen.svg)](https://phpstan.org/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 
 ## Features

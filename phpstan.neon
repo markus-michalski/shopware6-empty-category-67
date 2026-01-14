@@ -1,0 +1,11 @@
+parameters:
+    level: 6
+    paths:
+        - src
+    excludePaths:
+        - src/Resources
+    ignoreErrors:
+        # EntityRepository generic types - Shopware convention
+        -
+            identifier: missingType.generics
+            path: src/Subscriber/CategoryPageSubscriber.php

@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Twig extension `mmd_empty_category_message()` for template access
 - Multi-language support (German, English)
 - PHPUnit tests with 43 test cases
-- PHPStan Level 8 static analysis
+- PHPStan Level 6 static analysis
 
 [Unreleased]: https://github.com/markus-michalski/shopware6-empty-category-67/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/markus-michalski/shopware6-empty-category-67/releases/tag/v1.0.0
