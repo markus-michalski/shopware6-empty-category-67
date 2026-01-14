@@ -76,12 +76,40 @@ final class EmptyCategoryMessageService
         $message = (string) ($customFields['mmd_empty_category_message'] ?? '');
         $cssClass = $this->sanitizeCssClass((string) ($customFields['mmd_empty_category_css_class'] ?? ''));
         $imageUrl = $this->resolveImageUrl($category, $customFields);
+        $imageSize = $this->sanitizeSelectValue(
+            (string) ($customFields['mmd_empty_category_image_size'] ?? ''),
+            [EmptyCategoryMessage::SIZE_SMALL, EmptyCategoryMessage::SIZE_MEDIUM, EmptyCategoryMessage::SIZE_LARGE],
+            EmptyCategoryMessage::SIZE_MEDIUM
+        );
+        $imageAlign = $this->sanitizeSelectValue(
+            (string) ($customFields['mmd_empty_category_image_align'] ?? ''),
+            [EmptyCategoryMessage::ALIGN_LEFT, EmptyCategoryMessage::ALIGN_CENTER, EmptyCategoryMessage::ALIGN_RIGHT],
+            EmptyCategoryMessage::ALIGN_CENTER
+        );
+        $textAlign = $this->sanitizeSelectValue(
+            (string) ($customFields['mmd_empty_category_text_align'] ?? ''),
+            [EmptyCategoryMessage::ALIGN_LEFT, EmptyCategoryMessage::ALIGN_CENTER, EmptyCategoryMessage::ALIGN_RIGHT],
+            EmptyCategoryMessage::ALIGN_CENTER
+        );
 
         return new EmptyCategoryMessage(
             message: $message,
             imageUrl: $imageUrl,
             cssClass: $cssClass,
+            imageSize: $imageSize,
+            imageAlign: $imageAlign,
+            textAlign: $textAlign,
         );
+    }
+
+    /**
+     * Sanitize select field value - only allow predefined values
+     *
+     * @param array<string> $allowedValues
+     */
+    private function sanitizeSelectValue(string $value, array $allowedValues, string $default): string
+    {
+        return in_array($value, $allowedValues, true) ? $value : $default;
     }
 
     /**

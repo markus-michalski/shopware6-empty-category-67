@@ -95,4 +95,144 @@ class EmptyCategoryMessageTest extends TestCase
         self::assertFalse($empty->hasImage());
         self::assertTrue($withImage->hasImage());
     }
+
+    #[Test]
+    #[DataProvider('imageSizeProvider')]
+    public function itReturnsCorrectImageMaxWidth(string $size, string $expectedWidth): void
+    {
+        $message = new EmptyCategoryMessage(imageSize: $size);
+
+        self::assertSame($expectedWidth, $message->getImageMaxWidth());
+    }
+
+    /**
+     * @return iterable<string, array{size: string, expectedWidth: string}>
+     */
+    public static function imageSizeProvider(): iterable
+    {
+        yield 'small size' => [
+            'size' => EmptyCategoryMessage::SIZE_SMALL,
+            'expectedWidth' => '150px',
+        ];
+
+        yield 'medium size' => [
+            'size' => EmptyCategoryMessage::SIZE_MEDIUM,
+            'expectedWidth' => '250px',
+        ];
+
+        yield 'large size' => [
+            'size' => EmptyCategoryMessage::SIZE_LARGE,
+            'expectedWidth' => '400px',
+        ];
+
+        yield 'invalid size falls back to medium' => [
+            'size' => 'invalid',
+            'expectedWidth' => '250px',
+        ];
+
+        yield 'empty size falls back to medium' => [
+            'size' => '',
+            'expectedWidth' => '250px',
+        ];
+    }
+
+    #[Test]
+    #[DataProvider('imageAlignProvider')]
+    public function itReturnsCorrectImageJustify(string $align, string $expectedJustify): void
+    {
+        $message = new EmptyCategoryMessage(imageAlign: $align);
+
+        self::assertSame($expectedJustify, $message->getImageJustify());
+    }
+
+    /**
+     * @return iterable<string, array{align: string, expectedJustify: string}>
+     */
+    public static function imageAlignProvider(): iterable
+    {
+        yield 'left alignment' => [
+            'align' => EmptyCategoryMessage::ALIGN_LEFT,
+            'expectedJustify' => 'flex-start',
+        ];
+
+        yield 'center alignment' => [
+            'align' => EmptyCategoryMessage::ALIGN_CENTER,
+            'expectedJustify' => 'center',
+        ];
+
+        yield 'right alignment' => [
+            'align' => EmptyCategoryMessage::ALIGN_RIGHT,
+            'expectedJustify' => 'flex-end',
+        ];
+
+        yield 'invalid alignment falls back to center' => [
+            'align' => 'invalid',
+            'expectedJustify' => 'center',
+        ];
+    }
+
+    #[Test]
+    #[DataProvider('textAlignProvider')]
+    public function itReturnsCorrectTextAlignCss(string $align, string $expectedCss): void
+    {
+        $message = new EmptyCategoryMessage(textAlign: $align);
+
+        self::assertSame($expectedCss, $message->getTextAlignCss());
+    }
+
+    /**
+     * @return iterable<string, array{align: string, expectedCss: string}>
+     */
+    public static function textAlignProvider(): iterable
+    {
+        yield 'left alignment' => [
+            'align' => EmptyCategoryMessage::ALIGN_LEFT,
+            'expectedCss' => 'left',
+        ];
+
+        yield 'center alignment' => [
+            'align' => EmptyCategoryMessage::ALIGN_CENTER,
+            'expectedCss' => 'center',
+        ];
+
+        yield 'right alignment' => [
+            'align' => EmptyCategoryMessage::ALIGN_RIGHT,
+            'expectedCss' => 'right',
+        ];
+
+        yield 'empty alignment falls back to center' => [
+            'align' => '',
+            'expectedCss' => 'center',
+        ];
+    }
+
+    #[Test]
+    public function itCreatesMessageWithAllNewProperties(): void
+    {
+        $message = new EmptyCategoryMessage(
+            message: '<p>Test</p>',
+            imageUrl: 'https://example.com/img.jpg',
+            cssClass: 'my-class',
+            imageSize: EmptyCategoryMessage::SIZE_LARGE,
+            imageAlign: EmptyCategoryMessage::ALIGN_LEFT,
+            textAlign: EmptyCategoryMessage::ALIGN_RIGHT,
+        );
+
+        self::assertSame(EmptyCategoryMessage::SIZE_LARGE, $message->imageSize);
+        self::assertSame(EmptyCategoryMessage::ALIGN_LEFT, $message->imageAlign);
+        self::assertSame(EmptyCategoryMessage::ALIGN_RIGHT, $message->textAlign);
+        self::assertSame('400px', $message->getImageMaxWidth());
+        self::assertSame('flex-start', $message->getImageJustify());
+        self::assertSame('right', $message->getTextAlignCss());
+    }
+
+    #[Test]
+    public function itHasCorrectDefaultValues(): void
+    {
+        $message = new EmptyCategoryMessage();
+
+        self::assertSame(EmptyCategoryMessage::SIZE_MEDIUM, $message->imageSize);
+        self::assertSame(EmptyCategoryMessage::ALIGN_CENTER, $message->imageAlign);
+        self::assertSame(EmptyCategoryMessage::ALIGN_CENTER, $message->textAlign);
+    }
 }

@@ -72,8 +72,8 @@ class MmdEmptyCategory extends Plugin
                         'type' => 'text',
                         'config' => [
                             'label' => [
-                                'de-DE' => 'Hintergrundbild',
-                                'en-GB' => 'Background image',
+                                'de-DE' => 'Bild',
+                                'en-GB' => 'Image',
                             ],
                             'helpText' => [
                                 'de-DE' => 'Optionales Bild (z.B. ein trauriges Smiley), das bei leerer Kategorie angezeigt wird.',
@@ -81,6 +81,115 @@ class MmdEmptyCategory extends Plugin
                             ],
                             'componentName' => 'sw-media-field',
                             'customFieldPosition' => 20,
+                        ],
+                    ],
+                    [
+                        'name' => 'mmd_empty_category_image_size',
+                        'type' => 'select',
+                        'config' => [
+                            'label' => [
+                                'de-DE' => 'Bildgröße',
+                                'en-GB' => 'Image size',
+                            ],
+                            'helpText' => [
+                                'de-DE' => 'Maximale Breite des Bildes.',
+                                'en-GB' => 'Maximum width of the image.',
+                            ],
+                            'componentName' => 'sw-single-select',
+                            'options' => [
+                                [
+                                    'value' => 'small',
+                                    'label' => [
+                                        'de-DE' => 'Klein (150px)',
+                                        'en-GB' => 'Small (150px)',
+                                    ],
+                                ],
+                                [
+                                    'value' => 'medium',
+                                    'label' => [
+                                        'de-DE' => 'Mittel (250px)',
+                                        'en-GB' => 'Medium (250px)',
+                                    ],
+                                ],
+                                [
+                                    'value' => 'large',
+                                    'label' => [
+                                        'de-DE' => 'Groß (400px)',
+                                        'en-GB' => 'Large (400px)',
+                                    ],
+                                ],
+                            ],
+                            'customFieldPosition' => 25,
+                        ],
+                    ],
+                    [
+                        'name' => 'mmd_empty_category_image_align',
+                        'type' => 'select',
+                        'config' => [
+                            'label' => [
+                                'de-DE' => 'Bild-Ausrichtung',
+                                'en-GB' => 'Image alignment',
+                            ],
+                            'componentName' => 'sw-single-select',
+                            'options' => [
+                                [
+                                    'value' => 'left',
+                                    'label' => [
+                                        'de-DE' => 'Links',
+                                        'en-GB' => 'Left',
+                                    ],
+                                ],
+                                [
+                                    'value' => 'center',
+                                    'label' => [
+                                        'de-DE' => 'Mitte',
+                                        'en-GB' => 'Center',
+                                    ],
+                                ],
+                                [
+                                    'value' => 'right',
+                                    'label' => [
+                                        'de-DE' => 'Rechts',
+                                        'en-GB' => 'Right',
+                                    ],
+                                ],
+                            ],
+                            'customFieldPosition' => 26,
+                        ],
+                    ],
+                    [
+                        'name' => 'mmd_empty_category_text_align',
+                        'type' => 'select',
+                        'config' => [
+                            'label' => [
+                                'de-DE' => 'Text-Ausrichtung',
+                                'en-GB' => 'Text alignment',
+                            ],
+                            'componentName' => 'sw-single-select',
+                            'options' => [
+                                [
+                                    'value' => 'left',
+                                    'label' => [
+                                        'de-DE' => 'Links',
+                                        'en-GB' => 'Left',
+                                    ],
+                                ],
+                                [
+                                    'value' => 'center',
+                                    'label' => [
+                                        'de-DE' => 'Mitte',
+                                        'en-GB' => 'Center',
+                                    ],
+                                ],
+                                [
+                                    'value' => 'right',
+                                    'label' => [
+                                        'de-DE' => 'Rechts',
+                                        'en-GB' => 'Right',
+                                    ],
+                                ],
+                            ],
+                            'customFieldPosition' => 27,
                         ],
                     ],
                     [
