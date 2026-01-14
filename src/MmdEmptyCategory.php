@@ -55,23 +55,26 @@ class MmdEmptyCategory extends Plugin
         /** @var Connection $connection */
         $connection = $this->container->get(Connection::class);
 
-        // Get custom field set ID
-        $setId = $connection->fetchOne(
+        // Get custom field set ID (binary)
+        $setIdBinary = $connection->fetchOne(
             'SELECT id FROM custom_field_set WHERE name = :name',
             ['name' => self::CUSTOM_FIELD_SET_NAME]
         );
 
-        if ($setId === false) {
+        if ($setIdBinary === false) {
             // Set doesn't exist, create everything
             $this->upsertCustomFields($context);
 
             return;
         }
 
+        // Convert binary ID to hex string (UUID format for Shopware DAL)
+        $setId = bin2hex($setIdBinary);
+
         // Get existing custom field names
         $existingFields = $connection->fetchFirstColumn(
             'SELECT name FROM custom_field WHERE set_id = :setId',
-            ['setId' => $setId]
+            ['setId' => $setIdBinary]
         );
 
         $customFieldRepository = $this->container->get('custom_field.repository');
