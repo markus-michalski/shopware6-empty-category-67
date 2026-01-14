@@ -39,7 +39,8 @@ class CategoryPageSubscriber implements EventSubscriberInterface
 
     public function onNavigationPageLoaded(NavigationPageLoadedEvent $event): void
     {
-        $category = $event->getPage()->getHeader()->getNavigation()->getActive();
+        // Shopware 6.7: Direct access via getCategory() (no more getHeader()->getNavigation())
+        $category = $event->getPage()->getCategory();
 
         if ($category === null) {
             return;

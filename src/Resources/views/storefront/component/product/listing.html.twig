@@ -2,7 +2,8 @@
 
 {% block element_product_listing_col_empty %}
     {# Get custom empty message for current category #}
-    {% set activeCategory = page.header.navigation.active ?? null %}
+    {# Shopware 6.7: Direct access via page.category (no more page.header.navigation) #}
+    {% set activeCategory = page.category ?? null %}
     {% set emptyMessage = mmd_empty_category_message(activeCategory) %}
 
     <div class="cms-listing-col col-12">
