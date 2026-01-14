@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Shopware 6 Empty Category Messages Plugin
+ *
+ * @package   MmdEmptyCategory
+ * @author    Markus Michalski <info@markus-michalski.net>
+ * @copyright 2025 Markus Michalski
+ * @license   GPL-3.0-or-later - see LICENSE file for details
+ */
+
 declare(strict_types=1);
 
 namespace Mmd\EmptyCategory\Twig;
