@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: ['8.2', '8.3', '8.4']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, json, xml
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: PHP Syntax Check
+        run: |
+          echo "Checking PHP syntax..."
+          find src -name "*.php" -print0 | while IFS= read -r -d '' file; do
+            php -l "$file"
+          done
+
+      - name: Run PHPStan
+        run: composer analyse
+
+      - name: Run PHPUnit Tests
+        run: composer test
+
+  package-validation:
+    name: Package Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify Required Files
+        run: |
+          echo "Verifying plugin structure..."
+          test -f src/MmdEmptyCategory.php || { echo "Error: Main plugin class not found"; exit 1; }
+          test -f composer.json || { echo "Error: composer.json not found"; exit 1; }
+          test -f README.md || { echo "Error: README.md not found"; exit 1; }
+          test -f CHANGELOG.md || { echo "Error: CHANGELOG.md not found"; exit 1; }
+          test -f LICENSE || { echo "Error: LICENSE not found"; exit 1; }
+          test -d src/Resources/config || { echo "Error: Resources/config directory not found"; exit 1; }
+          test -f src/Resources/config/services.xml || { echo "Error: services.xml not found"; exit 1; }
+          echo "All required files present"
+
+      - name: Verify CHANGELOG format
+        run: |
+          echo "Checking CHANGELOG.md format..."
+          grep -q "## \[Unreleased\]" CHANGELOG.md || { echo "Error: [Unreleased] section missing"; exit 1; }
+          echo "CHANGELOG format valid"
+
+      - name: Verify composer.json metadata
+        run: |
+          echo "Checking composer.json metadata..."
+          grep -q '"shopware-platform-plugin"' composer.json || { echo "Error: Plugin type not set"; exit 1; }
+          grep -q '"shopware-plugin-class"' composer.json || { echo "Error: Plugin class not configured"; exit 1; }
+          grep -q '"GPL-3.0-or-later"' composer.json || { echo "Error: License not set correctly"; exit 1; }
+          echo "composer.json metadata valid"
+
+      - name: Verify plugin icon
+        run: |
+          echo "Checking plugin icon..."
+          test -f src/Resources/config/plugin.png || { echo "Error: plugin.png not found"; exit 1; }
+          echo "Plugin icon present"
