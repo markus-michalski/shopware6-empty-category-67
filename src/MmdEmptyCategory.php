@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Mmd\EmptyCategory;
 
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\InstallContext;
 use Shopware\Core\Framework\Plugin\Context\UninstallContext;
+use Shopware\Core\Framework\Plugin\Context\UpdateContext;
 
 /**
  * Plugin for custom "No Products" messages per category
@@ -23,7 +25,13 @@ class MmdEmptyCategory extends Plugin
     public function install(InstallContext $installContext): void
     {
         parent::install($installContext);
-        $this->createCustomFields($installContext);
+        $this->upsertCustomFields($installContext->getContext());
+    }
+
+    public function update(UpdateContext $updateContext): void
+    {
+        parent::update($updateContext);
+        $this->upsertCustomFields($updateContext->getContext());
     }
 
     public function uninstall(UninstallContext $uninstallContext): void
@@ -37,7 +45,7 @@ class MmdEmptyCategory extends Plugin
         $this->removeCustomFields();
     }
 
-    private function createCustomFields(InstallContext $context): void
+    private function upsertCustomFields(Context $context): void
     {
         $customFieldSetRepository = $this->container->get('custom_field_set.repository');
 
@@ -233,7 +241,7 @@ class MmdEmptyCategory extends Plugin
                     ],
                 ],
             ],
-        ], $context->getContext());
+        ], $context);
     }
 
     private function removeCustomFields(): void
