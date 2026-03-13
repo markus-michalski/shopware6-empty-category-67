@@ -1,0 +1,55 @@
+// Empty Category Message - CSP-compatible styles (no inline styles needed)
+
+.mmd-empty-category-message {
+    margin: 1rem 0;
+}
+
+// Image wrapper alignment variants
+.mmd-empty-category-image-wrapper {
+    display: flex;
+    margin-bottom: 1rem;
+
+    &--align-left {
+        justify-content: flex-start;
+    }
+
+    &--align-center {
+        justify-content: center;
+    }
+
+    &--align-right {
+        justify-content: flex-end;
+    }
+}
+
+// Image size variants
+.mmd-empty-category-image {
+    height: auto;
+
+    &--size-small {
+        max-width: 150px;
+    }
+
+    &--size-medium {
+        max-width: 250px;
+    }
+
+    &--size-large {
+        max-width: 400px;
+    }
+}
+
+// Text alignment variants
+.mmd-empty-category-text {
+    &--align-left {
+        text-align: left;
+    }
+
+    &--align-center {
+        text-align: center;
+    }
+
+    &--align-right {
+        text-align: right;
+    }
+}

@@ -13,12 +13,10 @@
                 <div class="mmd-empty-category-message {{ emptyMessage.cssClass }}">
                     {% block element_product_listing_col_empty_custom_image %}
                         {% if emptyMessage.hasImage() %}
-                            <div class="mmd-empty-category-image-wrapper"
-                                 style="display: flex; justify-content: {{ emptyMessage.imageJustify }};">
+                            <div class="mmd-empty-category-image-wrapper mmd-empty-category-image-wrapper--align-{{ emptyMessage.imageAlign }}">
                                 <img src="{{ emptyMessage.imageUrl|e('html_attr') }}"
                                      alt="{{ 'mmd.emptyCategory.imageAlt'|trans({ '%category%': activeCategory.name ?? '' })|e('html_attr') }}"
-                                     class="mmd-empty-category-image"
-                                     style="max-width: {{ emptyMessage.imageMaxWidth }}; height: auto;"
+                                     class="mmd-empty-category-image mmd-empty-category-image--size-{{ emptyMessage.imageSize }}"
                                      loading="lazy">
                             </div>
                         {% endif %}
@@ -26,8 +24,7 @@
 
                     {% block element_product_listing_col_empty_custom_message %}
                         {% if emptyMessage.hasMessage() %}
-                            <div class="mmd-empty-category-text"
-                                 style="text-align: {{ emptyMessage.textAlignCss }};">
+                            <div class="mmd-empty-category-text mmd-empty-category-text--align-{{ emptyMessage.textAlignCss }}">
                                 {# Use sw_sanitize to allow safe HTML while preventing XSS #}
                                 {{ emptyMessage.message|sw_sanitize }}
                             </div>

@@ -1,11 +1,15 @@
 parameters:
-    level: 6
+    level: 8
     paths:
         - src
     excludePaths:
         - src/Resources
     ignoreErrors:
-        # EntityRepository generic types - Shopware convention
+        # Shopware Plugin lifecycle: $this->container is nullable by interface but always set at runtime
         -
-            identifier: missingType.generics
-            path: src/Subscriber/CategoryPageSubscriber.php
+            identifier: method.nonObject
+            path: src/MmdEmptyCategory.php
+        # Shopware Plugin lifecycle: container->get() returns object, repository methods not inferable
+        -
+            identifier: method.notFound
+            path: src/MmdEmptyCategory.php
