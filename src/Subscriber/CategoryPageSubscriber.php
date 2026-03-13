@@ -33,6 +33,10 @@ class CategoryPageSubscriber implements EventSubscriberInterface
 {
     private const MAX_PARENT_DEPTH = 10;
 
+    /**
+     * @param EntityRepository<CategoryCollection> $categoryRepository
+     * @param EntityRepository<MediaCollection> $mediaRepository
+     */
     public function __construct(
         private readonly EntityRepository $categoryRepository,
         private readonly EntityRepository $mediaRepository,
