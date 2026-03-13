@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Nothing yet
+
+### Changed
+- Nothing yet
+
+### Deprecated
+- Nothing yet
+
+### Removed
+- Nothing yet
+
+### Fixed
+- Nothing yet
+
+### Security
+- Nothing yet
+
+## [1.0.1] - 2026-03-13
+
+### Changed
+- improve: security audit hardening - PHPStan level 8, CSP compatibility, subscriber tests
+
 ## [1.0.0] - 2026-01-18
 
 ### Added
@@ -23,5 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multi-language support (German, English)
 - PHPUnit tests with 43 test cases
 - PHPStan Level 6 static analysis
-[Unreleased]: https://github.com/markus-michalski/shopware6-empty-category-67/compare/v1.0.0...HEAD
+
+[Unreleased]: https://github.com/markus-michalski/shopware6-empty-category-67/compare/v1.0.1...HEAD
 [1.0.0]: https://github.com/markus-michalski/shopware6-empty-category-67/releases/tag/v1.0.0
+[1.0.1]: https://github.com/markus-michalski/shopware6-empty-category-67/releases/tag/v1.0.1
