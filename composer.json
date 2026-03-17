@@ -3,7 +3,7 @@
   "description": "Custom 'No Products' messages per category for Shopware 6.7",
   "version": "1.0.1",
   "type": "shopware-platform-plugin",
-  "license": "GPL-3.0-or-later",
+  "license": "proprietary",
   "authors": [
     {
       "name": "Markus Michalski",
