@@ -1,7 +1,7 @@
 {
   "name": "mmd/sw67-empty-category",
   "description": "Custom 'No Products' messages per category for Shopware 6.7",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "shopware-platform-plugin",
   "license": "proprietary",
   "authors": [

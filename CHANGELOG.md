@@ -25,6 +25,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Nothing yet
 
+## [1.0.2] - 2026-03-23
+
+### Fixed
+- update license check from GPL-3.0 to proprietary
+- use eager loading for LCP image instead of lazy
+- add explicit image dimensions to prevent CLS layout shift
+- update license from GPL-3.0-or-later to proprietary
+
 ## [1.0.1] - 2026-03-13
 
 ### Changed
@@ -47,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHPUnit tests with 43 test cases
 - PHPStan Level 6 static analysis
 
-[Unreleased]: https://github.com/markus-michalski/shopware6-empty-category-67/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/markus-michalski/shopware6-empty-category-67/compare/v1.0.2...HEAD
 [1.0.0]: https://github.com/markus-michalski/shopware6-empty-category-67/releases/tag/v1.0.0
 [1.0.1]: https://github.com/markus-michalski/shopware6-empty-category-67/releases/tag/v1.0.1
+[1.0.2]: https://github.com/markus-michalski/shopware6-empty-category-67/releases/tag/v1.0.2
