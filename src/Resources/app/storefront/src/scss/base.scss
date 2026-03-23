@@ -22,20 +22,23 @@
     }
 }
 
-// Image size variants
+// Image size variants with explicit dimensions to prevent CLS
 .mmd-empty-category-image {
     height: auto;
 
     &--size-small {
-        max-width: 150px;
+        width: 150px;
+        max-width: 100%;
     }
 
     &--size-medium {
-        max-width: 250px;
+        width: 250px;
+        max-width: 100%;
     }
 
     &--size-large {
-        max-width: 400px;
+        width: 400px;
+        max-width: 100%;
     }
 }
 
