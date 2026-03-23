@@ -21,7 +21,8 @@
                                      class="mmd-empty-category-image mmd-empty-category-image--size-{{ emptyMessage.imageSize }}"
                                      width="{{ imgWidth }}"
                                      height="{{ imgWidth }}"
-                                     loading="lazy">
+                                     loading="eager"
+                                     fetchpriority="high">
                             </div>
                         {% endif %}
                     {% endblock %}
