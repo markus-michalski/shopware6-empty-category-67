@@ -76,7 +76,7 @@ jobs:
           echo "Checking composer.json metadata..."
           grep -q '"shopware-platform-plugin"' composer.json || { echo "Error: Plugin type not set"; exit 1; }
           grep -q '"shopware-plugin-class"' composer.json || { echo "Error: Plugin class not configured"; exit 1; }
-          grep -q '"GPL-3.0-or-later"' composer.json || { echo "Error: License not set correctly"; exit 1; }
+          grep -q '"proprietary"' composer.json || { echo "Error: License not set correctly"; exit 1; }
           echo "composer.json metadata valid"
 
       - name: Verify plugin icon
