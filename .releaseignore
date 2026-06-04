@@ -1,0 +1,9 @@
+# .releaseignore — additional ZIP exclusions for shopware-plugin-release.sh
+# rsync filter syntax — one pattern per line, # = comment
+#
+# Already excluded by default (no need to repeat here):
+#   .git  .git-workflow  .github  .gitignore  .idea  .vscode
+#   node_modules  /vendor  composer.lock  tests
+#   phpunit.xml*  .phpunit.cache  phpstan.neon*  .php-cs-fixer*
+#   var  dist  *.log  *.md
+#   (README.md, CHANGELOG.md, LICENSE* are copied back after *.md exclusion)
