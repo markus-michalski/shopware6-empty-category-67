@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Nothing yet
 
 ### Fixed
-- Nothing yet
+- align the `license` field in composer.json and the CI metadata check with the GPL-3.0-or-later LICENSE file
 
 ### Security
 - Nothing yet
